@@ -256,16 +256,27 @@ console.log(getArtistByIndex(artists, 0));
 
 /* Task 4: Create a function called get20s() that takes data as an argument and returns an array with names of artists who were born in and died in 20th century (1900-2000) example born in 1901 and died in 1959 - included / born in 1889 and died in 1925 not included - should return ["Salvador Dali", "Frida Kahlo"]*/
 
-function get20s(bornIn, diedIn) {
-  for (i = 0; i < artists.length - 1; i++) {
-    console.log(artists[i].years);
-    if (artists[i].years === "1900-2000") {
-      artists.push(name[i]);
+const bornBetween = [];
+
+function get20s(arr) {
+  for (i = 0; i < arr.length - 1; i++) {
+    let date = arr[i].years.split(" - ");
+    if (Number(date[0]) > 1899 && Number(date[1]) < 2000) {
+      bornBetween.push(arr[i].name);
     }
   }
+  return bornBetween;
 }
+console.log(bornBetween);
+get20s(artists);
 
-get20s(1900, 2000);
+// console.log(arr[i].name);
+// console.log(arr[i].years);
+// console.log(arr[i].years.split(" - "));
+// console.log(date[0]);
+// console.log(Number(date[0]) > 1899 && Number(date[1]) < 2000);
+// console.log(get20s(artists));
+
 // console.log(Number(get20s(1900, 2000)));
 
 /* Task 5: Create a function called `removeArtist` that takes two arguments:
@@ -280,11 +291,11 @@ get20s(1900, 2000);
  */
 function removeArtist(arr1, indexNum) {
   arr1.splice(arr1[indexNum], 1);
-  // console.log(arr1.length);
-  return arr1.length;
+  console.log(arr1.length);
+  // return arr1.length;
 }
 
-console.log(removeArtist(artists, 0));
+// console.log(removeArtist(artists, 0));
 removeArtist(artists, 0);
 
 /**
@@ -300,14 +311,24 @@ bio: Add 1-2 sentences (or use lorem ipsum)
 
 At the end, this function should return the new array with information added"*/
 
-function addArtist(id, name, years, genre, nationality, bio) {
-  artists.push({ id, name, years, genre, nationality, bio });
-  return artists;
+const newArtist = {
+  id: 20,
+  name: "Matt Sexton",
+  years: "1988 - 2020",
+  genre: "Web Design",
+  nationality: "Your Nationality Here",
+  bio: "Ause lorem ipsum",
+};
+
+function addArtist(asdf, arr) {
+  let newArr = [...arr];
+  newArr.push(asdf);
+  // console.log(newArr);
+  return newArr;
 }
 
-console.log(
-  addArtist(20, "Matt", "1988 - 2020", "Web Design", "USA", "lorem ipsum")
-);
+addArtist(newArtist, artists);
+console.log(addArtist(newArtist, artists));
 
 /* Task 7: Create a function called lotsOfArt() that takes one argument: 
 
@@ -317,16 +338,20 @@ and returns an array with names of artists who painted more than 100 paintings.
 
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ..."Albrecht Dürer"]*/
 
-function lotsOfArt(arr3) {
-  for (i = 0; i < artists.length - 1; i++) {
-    if (artists[i].paintings > 100) {
-      artists.push(artists[i].name);
+const bigPainters = [];
+
+function lotsOfArt(arr) {
+  for (i = 0; i < arr.length - 1; i++) {
+    if (arr[i].paintings > 100) {
+      bigPainters.push(arr[i].name);
     }
   }
+  return bigPainters;
 }
 
+console.log(lotsOfArt(artists));
 lotsOfArt(artists);
-console.log(artists[i].paintings);
+// console.log(bigPainters);
 
 // 🎨🎨 STRETCH 🎨🎨//
 
